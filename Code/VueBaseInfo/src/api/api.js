@@ -1,17 +1,24 @@
 import axios from 'axios'
 
-let base = 'http://127.0.0.1:8087'
+// axios.defaults.headers.common['Authorization'] = sessionStorage.getItem('token')
 
-export const requestLogin = params => { return axios.post(`${base}/login`, params).then(res => res.data) }
+// 创建axios实例
+const service = axios.create({
+  baseURL: process.env.BASE_API,
+  timeout: 10000
+})
+// request拦截器
+service.interceptors.request.use(config => {
+  if (sessionStorage.getItem('token')) {
+    config.headers['Authorization'] = sessionStorage.getItem('token')
+  }
+  return config
+}, error => {
+  // Do something with request error
+  console.log(error) // for debug
+  Promise.reject(error)
+})
 
-export const getUserList = params => { return axios.get(`${base}/user/list`, { params: params }) }
+export const requestLogin = params => { return service.post('users/login', params).then(res => res.data) }
 
-export const getUserListPage = params => { return axios.get(`${base}/user/listpage`, { params: params }) }
-
-export const removeUser = params => { return axios.get(`${base}/user/remove`, { params: params }) }
-
-export const batchRemoveUser = params => { return axios.get(`${base}/user/batchremove`, { params: params }) }
-
-export const editUser = params => { return axios.get(`${base}/user/edit`, { params: params }) }
-
-export const addUser = params => { return axios.get(`${base}/user/add`, { params: params }) }
+export const getUserList = params => { return service.get('Users/GetUserModel', { params: params }) }

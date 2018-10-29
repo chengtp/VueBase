@@ -9,7 +9,6 @@ const store = new Vuex.Store({
   },
   mutations: {
     usercontext: (state, payload) => {
-      debugger
       state.userinfo = payload
       state.isLogin = true
     }

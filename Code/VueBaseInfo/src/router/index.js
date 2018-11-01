@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Main from '@/components/Main'
+import User from '@/components/User'
+import Role from '@/components/Role'
 import test from '@/components/test'
 import testt from '@/components/testt'
 
@@ -15,6 +17,14 @@ Vue.use(Element, { size: 'small', zIndex: 3000 })
 const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '',
+      component: Home,
+      name: 'Home',
+      meta: {
+        name: '主页面'
+      }
+    },
     {
       path: '/login',
       component: Login,
@@ -37,6 +47,16 @@ const router = new Router({
           path: '/home/main',
           component: Main,
           name: 'Main'
+        },
+        {
+          path: '/home/user',
+          component: User,
+          name: 'User'
+        },
+        {
+          path: '/home/role',
+          component: Role,
+          name: 'Role'
         },
         {
           path: '/home/test',

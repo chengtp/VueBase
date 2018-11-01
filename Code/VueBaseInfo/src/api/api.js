@@ -22,5 +22,6 @@ service.interceptors.request.use(config => {
 export const requestLogin = params => { return service.post('users/login', params).then(res => res.data) }
 
 export const getUserList = params => { return service.get('Users/GetUserModel', { params: params }) }
+export const getUserModels = params => { return service.get('Users/GetUserModels', { params: params }) }
 
 export const GetMenuModels = params => { return service.get('menu/GetMenuModels', { params: params }) }

@@ -1,59 +1,46 @@
 <template>
   <div>
     <div class="g-hd">
-      <div class="g-hdName">欢迎您：chengtp 登录</div>
+      <div class="g-hdName">
+        <div>
+          <ul>
+            <li class="hdNameLi"><span><a href="#" title="注销登录" @click="logout">退出</a></span></li>
+            <li class="hdNameLi"><span>欢迎您：</span><strong :title="userinfo.User_Name">{{userinfo.User_Name}}</strong></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="g-left">
       <div>
         <el-row class="tac">
           <el-col :span="24">
             <!--<div style="margin:14px auto;">我的导航目录</div>-->
-            <el-radio-group v-model="isCollapse">
+            <el-radio-group v-model="isCollapse" style="width:100%">
               <el-radio-button :label="false">展开</el-radio-button>
-              <el-radio-button :label="true">收起</el-radio-button>
+              <el-radio-button :label="true" style="float:right">收起</el-radio-button>
             </el-radio-group>
             <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-              
-              <el-submenu :index="item.MenuCode" v-for="(item,index) in menuList" :key="item.Id">
+              <el-submenu :index="item.MenuCode" v-for="item in menuList" :key="item.Id">
                 <template slot="title">
                   <i :class="item.Menu_Ico"></i>
                   <span slot="title">{{item.Menu_Name}}</span>
-                </template> 
-                <!--<el-menu-item-group>
-                  <el-menu-item index="1-1" @click="test(1)">选项1</el-menu-item>
-                  <el-menu-item index="1-2" @click="test(2)">选项2</el-menu-item>
+                </template>
+                <el-menu-item-group v-if="itemChildren.isLast" :index="itemChildren.MenuCode" v-for="itemChildren in item.children" :key="itemChildren.Id">
+                  <el-menu-item :index="itemChildren.MenuCode" @click="clickUrl(itemChildren.Memu_Url)">{{itemChildren.Menu_Name}}</el-menu-item>
                 </el-menu-item-group>
-                <el-menu-item-group>
-                  <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>-->
-                <el-submenu :index="itemChildren.MenuCode" v-for="(itemChildren,index) in item.children" :key="itemChildren.Id">
+                <el-submenu v-if="!itemChildren.isLast" :index="itemChildren.MenuCode" v-for="itemChildren in item.children" :key="itemChildren.Id">
                   <span slot="title">{{itemChildren.Menu_Name}}</span>
-                  <el-menu-item :index="itemChildrent.MenuCode" v-for="itemChildrent in itemChildren.children" @click="test(itemChildrent.Memu_Url)">
+                  <el-menu-item :index="itemChildrent.MenuCode" v-for="itemChildrent in itemChildren.children" :key="itemChildrent.Id" @click="clickUrl(itemChildrent.Memu_Url)">
                     {{itemChildrent.Menu_Name}}
                   </el-menu-item>
-                  
                 </el-submenu>
               </el-submenu>
-
-              <!--<el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
-              </el-menu-item>
-              <el-menu-item index="3" disabled>
-                <i class="el-icon-document"></i>
-                <span slot="title">导航三</span>
-              </el-menu-item>
-              <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
-              </el-menu-item>-->
             </el-menu>
           </el-col>
         </el-row>
       </div>
     </div>
     <div class="g-right">
-      右边
       <router-view></router-view>
     </div>
   </div>
@@ -74,7 +61,11 @@ export default {
     }
   },
   methods: {
-    test: function (url) {
+    logout: function () {
+      sessionStorage.clear()
+      this.$router.push({ path: '/login' })
+    },
+    clickUrl: function (url) {
       this.$router.push({ path: url })
     },
     handleOpen (key, keyPath) {
@@ -125,34 +116,57 @@ export default {
     _padding: 0;
   }
 
+  a {
+    text-decoration: none;
+    list-style: none;
+  }
+
+  .g-hd .g-hdName {
+    padding-right: 50px;
+  }
+
+    .g-hd .g-hdName a {
+      color: white;
+    }
+
+  .g-hdName .hdNameLi {
+    float: right;
+    list-style: none;
+    color: white;
+  }
+
+    .g-hdName .hdNameLi:first-child {
+      padding-left: 16px;
+    }
+
+  .g-hdName ul, li strong {
+    color: #FFCC00;
+  }
+
   .g-hd, .g-left, .g-right {
     position: absolute;
     left: 0;
   }
 
-  .g-hd {
-    width: 100%;
-    text-align:right;
+  .g-left, .g-right {
+    top: 60px;
+    bottom: 0px;
+    _height: 100%;
+    overflow: auto;
   }
-    .g-hd .g-hdName {
-     padding-right:50px;
-    }
-    .g-left, .g-right {
-      top: 80px;
-      bottom: 0px;
-      _height: 100%;
-      overflow: auto;
-    }
 
   .g-hd {
+    width: 100%;
+    text-align: right;
     top: 0;
-    height: 80px;
-    background-color:burlywood;
+    height: 60px;
+    background-color: #005FAA;
+    color: white;
   }
 
   .g-left {
     width: 250px;
-    background-color:azure;
+    background-color: #B7DEF7;
   }
 
   .g-right {
@@ -164,9 +178,4 @@ export default {
     _margin-left: 250px;
     background-color: beige
   }
-  /*.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 230px;
-    min-height: 400px;
-  }*/
-
 </style>

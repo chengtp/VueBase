@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\node_modules\\caniuse-api\\node_modules",
+    "\\node_modules\\caniuse-api\\node_modules\\browserslist",
     "\\src\\api",
     "\\src\\router",
-    "\\src\\vuex",
     "\\static"
   ],
   "SelectedNode": "\\src",

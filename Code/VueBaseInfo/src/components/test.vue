@@ -1,6 +1,6 @@
 <template>
   <div>
-    test {{name}}
+    用户 {{name}}
   </div>
 </template>
 
@@ -11,23 +11,21 @@ export default {
   name: 'test',
   data () {
     return {
-      name: '123'
+      name: 'test'
     }
   },
   method: {
     test () {
       var params = null
       getUserList(params).then(data => {
-        debugger
-        this.name = 'aaaaa'
+        this.name = 'test1111'
       })
     }
   },
   computed: {},
   created: function () {
     getUserList(null).then(data => {
-      debugger
-      this.name = '3434234'
+      this.name = 'test11'
     })
   }
 }

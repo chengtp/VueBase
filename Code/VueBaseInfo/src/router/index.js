@@ -9,6 +9,7 @@ import test from '@/components/test'
 import testt from '@/components/testt'
 
 import Element from 'element-ui'
+// import Element from 'element-ui/lib/index.js'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Router)

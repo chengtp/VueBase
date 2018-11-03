@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './vuex'
-
+import Element from 'element-ui/lib/index.js'
+Vue.use(Element, { size: 'small', zIndex: 3000 })
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

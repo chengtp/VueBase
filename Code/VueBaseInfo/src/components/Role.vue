@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { getUserList } from '../api/api'
 
 export default {
   name: 'Role',
@@ -14,19 +13,12 @@ export default {
       name: '1角色管理'
     }
   },
-  method: {
+  methods: {
     test () {
-      var params = null
-      getUserList(params).then(data => {
-        this.name = '角色管理2'
-      })
     }
   },
   computed: {},
   created: function () {
-    getUserList(null).then(data => {
-      this.name = '角色管理3'
-    })
   }
 }
 

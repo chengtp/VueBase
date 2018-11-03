@@ -14,7 +14,7 @@ export default {
     return {
     }
   },
-  method: {
+  methods: {
     test () {
       return ''
     }

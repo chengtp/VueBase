@@ -1,12 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\node_modules\\caniuse-api\\node_modules",
-    "\\node_modules\\caniuse-api\\node_modules\\browserslist",
+    "\\node_modules\\element-ui",
+    "\\node_modules\\element-ui\\lib",
+    "\\src",
     "\\src\\api",
+    "\\src\\components",
     "\\src\\router",
+    "\\src\\vuex",
     "\\static"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\src\\components\\User.vue",
   "PreviewInSolutionExplorer": false
 }

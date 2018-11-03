@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { getUserList } from '../api/api'
 
 export default {
   name: 'test',
@@ -14,19 +13,12 @@ export default {
       name: 'test'
     }
   },
-  method: {
+  methods: {
     test () {
-      var params = null
-      getUserList(params).then(data => {
-        this.name = 'test1111'
-      })
     }
   },
   computed: {},
   created: function () {
-    getUserList(null).then(data => {
-      this.name = 'test11'
-    })
   }
 }
 

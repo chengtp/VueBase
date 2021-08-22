@@ -3,10 +3,14 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\assets",
-    "\\src\\components",
-    "\\src\\plugins"
+    "\\src\\api",
+    "\\src\\router",
+    "\\src\\store",
+    "\\src\\styles",
+    "\\src\\utils",
+    "\\src\\views",
+    "\\src\\views\\Login"
   ],
-  "SelectedNode": "\\babel.config.js",
+  "SelectedNode": "\\src\\views\\Login\\index.vue",
   "PreviewInSolutionExplorer": false
 }
